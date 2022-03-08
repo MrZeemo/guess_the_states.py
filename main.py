@@ -13,10 +13,7 @@ score = 0
 while len(guesses_list) < 50:
     answer_state = screen.textinput(f"{score}/50", "Guess Another State").title()
     if answer_state == "Exit":
-        missing_states = []
-        for state in all_states:
-            if state not in guesses_list:
-                missing_states.append(state)
+        missing_states = [state for state in all_states if state not in guesses_list]
         new_data = pandas.DataFrame(missing_states)
         new_data.to_csv("States_to_learn.csv")
         break
